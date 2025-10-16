@@ -1,0 +1,601 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="billing.aspx.cs" Inherits="HMS_Portel.billing" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Billing - Hospital Admin Panel</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-hospital-alt"></i>
+                    <h2>Hospital Admin</h2>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <a href="dashboard.aspx">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="doctor.aspx">
+                            <i class="fas fa-user-md"></i>
+                            <span>Doctors</span>
+                        </a>
+                    </li>
+                    <%--<li class="menu-item">
+                        <a href="patients.aspx">
+                            <i class="fas fa-user-injured"></i>
+                            <span>Patients</span>
+                        </a>
+                    </li>--%>
+                    <li class="menu-item">
+                        <a href="appointments.aspx">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <%--<li class="menu-item">
+                        <a href="staff.html">
+                            <i class="fas fa-user-nurse"></i>
+                            <span>Staff/Nurses</span>
+                        </a>
+                    </li>--%>
+                    <li class="menu-item active">
+                        <a href="billing.aspx">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Billing</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="pharmacy.aspx">
+                            <i class="fas fa-pills"></i>
+                            <span>Pharmacy</span>
+                        </a>
+                    </li>
+                    <%--<li class="menu-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>--%>
+                </ul>
+
+                <div class="sidebar-footer">
+                    <a href="index.aspx" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="top-header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Billing Management</h1>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search bills...">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="openCreateBillModal()">
+                            <i class="fas fa-plus"></i>
+                            Create Bill
+                        </button>
+                    </div>
+                </header>
+</asp:Content>
+<asp:Content ID="Content4" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <div class="content-area">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Revenue</h3>
+                    <span class="stat-number">$45,678</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Pending Bills</h3>
+                    <span class="stat-number">23</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Paid Bills</h3>
+                    <span class="stat-number">156</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Overdue</h3>
+                    <span class="stat-number">8</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="filter-group">
+                <label>Date Range:</label>
+                <input type="date" class="filter-input" value="2024-01-01">
+                <span>to</span>
+                <input type="date" class="filter-input" value="2024-01-31">
+            </div>
+
+            <div class="filter-group">
+                <label>Status:</label>
+                <select class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="paid">Paid</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Payment Method:</label>
+                <select class="filter-select">
+                    <option value="">All Methods</option>
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <button class="btn btn-outline">
+                <i class="fas fa-filter"></i>
+                Apply Filters
+            </button>
+        </div>
+
+        <!-- Bills Table -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="select-all">
+                        </th>
+                        <th>Bill ID</th>
+                        <th>Patient</th>
+                        <th>Service</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox"></td>
+                        <td>BILL001</td>
+                        <td>
+                            <div class="patient-info">
+                                <img src="https://via.placeholder.com/40" alt="John Doe">
+                                <div>
+                                    <h4>John Doe</h4>
+                                    <span>PAT001</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Consultation + Lab Tests</td>
+                        <td>$450.00</td>
+                        <td>2024-01-15</td>
+                        <td>Insurance</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon" onclick="viewBill(1)" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="editBill(1)" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="markPaid(1)" title="Mark as Paid">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn-icon" onclick="printBill(1)" title="Print">
+                                    <i class="fas fa-print"></i>
+                                </button>
+                                <button class="btn-icon danger" onclick="deleteBill(1)" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="checkbox"></td>
+                        <td>BILL002</td>
+                        <td>
+                            <div class="patient-info">
+                                <img src="https://via.placeholder.com/40" alt="Jane Smith">
+                                <div>
+                                    <h4>Jane Smith</h4>
+                                    <span>PAT002</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Emergency Treatment</td>
+                        <td>$1,250.00</td>
+                        <td>2024-01-14</td>
+                        <td>Card</td>
+                        <td><span class="status paid">Paid</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon" onclick="viewBill(2)" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="editBill(2)" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="generateReceipt(2)" title="Receipt">
+                                    <i class="fas fa-receipt"></i>
+                                </button>
+                                <button class="btn-icon" onclick="printBill(2)" title="Print">
+                                    <i class="fas fa-print"></i>
+                                </button>
+                                <button class="btn-icon danger" onclick="deleteBill(2)" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="checkbox"></td>
+                        <td>BILL003</td>
+                        <td>
+                            <div class="patient-info">
+                                <img src="https://via.placeholder.com/40" alt="Mike Johnson">
+                                <div>
+                                    <h4>Mike Johnson</h4>
+                                    <span>PAT003</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Surgery + Medication</td>
+                        <td>$3,500.00</td>
+                        <td>2024-01-10</td>
+                        <td>Bank Transfer</td>
+                        <td><span class="status overdue">Overdue</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon" onclick="viewBill(3)" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" onclick="editBill(3)" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="sendReminder(3)" title="Send Reminder">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="btn-icon" onclick="printBill(3)" title="Print">
+                                    <i class="fas fa-print"></i>
+                                </button>
+                                <button class="btn-icon danger" onclick="deleteBill(3)" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="btn btn-outline" disabled>
+                <i class="fas fa-chevron-left"></i>
+                Previous
+            </button>
+            <div class="pagination-numbers">
+                <button class="btn btn-primary">1</button>
+                <button class="btn btn-outline">2</button>
+                <button class="btn btn-outline">3</button>
+            </div>
+            <button class="btn btn-outline">
+                Next
+                        <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    </main>
+    </div>
+    
+    <!-- Create Bill Modal -->
+    <div id="createBillModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Bill</h3>
+                <button class="modal-close" onclick="closeCreateBillModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form class="modal-form" id="createBillForm">
+                <div class="form-group">
+                    <label for="patient">Select Patient</label>
+                    <select id="patient" name="patient" required>
+                        <option value="">Select Patient</option>
+                        <option value="pat001">John Doe (PAT001)</option>
+                        <option value="pat002">Jane Smith (PAT002)</option>
+                        <option value="pat003">Mike Johnson (PAT003)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceType">Service Type</label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">Select Service</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="emergency">Emergency Treatment</option>
+                        <option value="surgery">Surgery</option>
+                        <option value="lab-tests">Lab Tests</option>
+                        <option value="medication">Medication</option>
+                        <option value="follow-up">Follow-up</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" name="dueDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Additional notes..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeCreateBillModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Bill</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%-- <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard - Hospital Admin Panel</title>
+                    <link rel="stylesheet" href="styles.css">
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+                </head>
+                <body>
+                    <div class="admin-container">
+                        <!-- Sidebar -->
+                        <nav class="sidebar">
+                            <div class="sidebar-header">
+                                <i class="fas fa-hospital-alt"></i>
+                                <h2>Hospital Admin</h2>
+                            </div>
+                            <ul class="sidebar-menu">
+                                <li class="menu-item active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a></li>
+                                <li class="menu-item"><a href="doctors.html"><i class="fas fa-user-md"></i><span>Doctors</span> </a></li>
+                                <li class="menu-item"><a href="patients.html"><i class="fas fa-user-injured"></i><span>Patients</span> </a></li>
+                                <li class="menu-item"><a href="appointments.html"><i class="fas fa-calendar-check"></i><span>Appointments</span> </a></li>
+                                <li class="menu-item"><a href="staff.html"><i class="fas fa-user-nurse"></i><span>Staff/Nurses</span> </a></li>
+                                <li class="menu-item"><a href="billing.html"><i class="fas fa-file-invoice-dollar"></i><span>Billing</span> </a></li>
+                                <li class="menu-item"><a href="pharmacy.html"><i class="fas fa-pills"></i><span>Pharmacy</span> </a></li>
+                                <li class="menu-item"><a href="reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span> </a></li>
+                                <li class="menu-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span> </a></li>
+                            </ul>
+                            <div class="sidebar-footer">
+                                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i><span>Logout</span> </a>
+                            </div>
+                        </nav>
+
+                        <!-- Main Content -->
+                        <main class="main-content">
+                        <header class="top-header">
+                            <div class="header-left">
+                                <button class="sidebar-toggle">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                                <h1>Dashboard</h1>
+                            </div>
+                            <div class="header-right">
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search..."> <i class="fas fa-search"></i>
+                                </div>
+                                <div class="notifications">
+                                    <i class="fas fa-bell"></i><span class="notification-badge">3</span>
+                                </div>
+                                <div class="user-profile">
+                                    <img src="https://via.placeholder.com/40" alt="Profile"> <span>Admin User</span>
+                                </div>
+                            </div>
+                        </header>
+                    </div>--%>
+</asp:Content>
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
+    <%--  <div class="content-area">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Patients</h3>
+                                <span class="stat-number">1,247</span> <span class="stat-change positive">+12% this month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Active Doctors</h3>
+                                <span class="stat-number">48</span> <span class="stat-change positive">+3 this month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Today's Appointments</h3>
+                                <span class="stat-number">89</span> <span class="stat-change neutral">Same as yesterday</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Monthly Revenue</h3>
+                                <span class="stat-number">$45,678</span> <span class="stat-change positive">+8% this month</span>
+                            </div>
+                        </div>
+        </div>
+
+                    <!-- Charts and Tables -->
+                    <div class="dashboard-grid">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3>Appointment Trends</h3>
+                                <div class="chart-controls">
+                                    <button class="btn btn-outline">
+                                        Week
+                                    </button>
+                                    <button class="btn btn-primary">
+                                        Month
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        Year
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>
+                                    Chart visualization would go here</p>
+                            </div>
+                        </div>
+                        <div class="recent-activity">
+                            <div class="activity-header">
+                                <h3>Recent Activity</h3>
+                                <a href="#" class="view-all">View All</a>
+                            </div>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>
+                                            New patient registered: John Doe</p>
+                                        <span class="activity-time">2 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>
+                                            Appointment scheduled with Dr. Smith</p>
+                                        <span class="activity-time">15 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>
+                                            Dr. Johnson completed consultation</p>
+                                        <span class="activity-time">1 hour ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>
+                                            Payment received for consultation</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <a href="appointments.html" class="action-btn"><i class="fas fa-plus"></i><span>New Appointment</span> </a><a href="patients.html" class="action-btn"><i class="fas fa-user-plus"></i><span>Add Patient</span> </a><a href="doctors.html" class="action-btn"><i class="fas fa-user-md"></i><span>Add Doctor</span> </a><a href="billing.html" class="action-btn"><i class="fas fa-file-invoice"></i><span>Create Bill</span> </a>
+                        </div>
+        </div>
+    </div>
+            </main>
+        </div>
+    --%>
+</asp:Content>
+

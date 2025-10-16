@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS_Portel", "HMS_Portel.csproj", "{90A74C1D-7964-42D2-B72E-6B3660B516AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90A74C1D-7964-42D2-B72E-6B3660B516AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A74C1D-7964-42D2-B72E-6B3660B516AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A74C1D-7964-42D2-B72E-6B3660B516AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A74C1D-7964-42D2-B72E-6B3660B516AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CEFF6B9-266B-4C2C-BEF9-8BCACBBAA408}
+	EndGlobalSection
+EndGlobal

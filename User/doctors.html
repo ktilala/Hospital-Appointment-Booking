@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Hospital Panel · Doctors</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<div class="app">
+		<aside class="sidebar">
+			<div class="brand"><div class="logo"></div> Hospital Panel</div>
+			<nav class="nav">
+				<a href="index.html"><span class="i">🏠</span> Dashboard</a>
+				<a href="book-appointment.html"><span class="i">🗓️</span> Book Appointment</a>
+				<a href="my-appointments.html"><span class="i">📋</span> My Appointments</a>
+				<a class="active" href="doctors.html"><span class="i">👩‍⚕️</span> Doctors</a>
+				<a href="billing.html"><span class="i">💳</span> Billing</a>
+				<div class="sep"></div>
+				<a href="profile.html"><span class="i">👤</span> Profile</a>
+			</nav>
+		</aside>
+		<main class="content">
+			<div class="topbar">
+				<h2 class="page-title">Doctors</h2>
+				<div class="user-mini">
+					<div class="muted">User</div>
+					<a class="btn" href="logout.html">Logout</a>
+				</div>
+			</div>
+
+			<section class="card" style="margin-bottom:16px;">
+				<div class="doctor-toolbar">
+					<div class="field">
+						<label>Search</label>
+						<input placeholder="Search name or department" />
+					</div>
+					<div class="field">
+						<label>Department</label>
+						<select>
+							<option value="">All</option>
+							<option>Cardiology</option>
+							<option>Dermatology</option>
+							<option>Pediatrics</option>
+							<option>Orthopedics</option>
+						</select>
+					</div>
+					<div class="field">
+						<label>Sort by</label>
+						<select>
+							<option>Best match</option>
+							<option>Highest rated</option>
+							<option>Nearest</option>
+						</select>
+					</div>
+				</div>
+			</section>
+
+			<div class="doctors-grid">
+				<div class="card doctor-card">
+					<div class="avatar"></div>
+					<div>
+						<div class="doctor-header">
+							<div class="doctor-name">Dr. Jane Doe</div>
+							<span class="pill cardiology">Cardiology</span>
+							<span class="stars">★★★★★</span>
+						</div>
+						<div class="doctor-meta">
+							<span>10 yrs experience</span>
+							<span>City Hospital</span>
+							<span class="availability"><span class="pill">Today 3 slots</span></span>
+						</div>
+					</div>
+					<div class="doctor-actions">
+						<a class="btn" href="book-appointment.html">Book</a>
+						<a class="btn btn-primary" href="book-appointment.html">Next available</a>
+					</div>
+				</div>
+
+				<div class="card doctor-card">
+					<div class="avatar"></div>
+					<div>
+						<div class="doctor-header">
+							<div class="doctor-name">Dr. John Smith</div>
+							<span class="pill pediatrics">Pediatrics</span>
+							<span class="stars">★★★★☆</span>
+						</div>
+						<div class="doctor-meta">
+							<span>8 yrs experience</span>
+							<span>Community Care</span>
+							<span class="availability"><span class="pill">Tomorrow 5 slots</span></span>
+						</div>
+					</div>
+					<div class="doctor-actions">
+						<a class="btn" href="book-appointment.html">Book</a>
+						<a class="btn btn-primary" href="book-appointment.html">Next available</a>
+					</div>
+				</div>
+
+				<div class="card doctor-card">
+					<div class="avatar"></div>
+					<div>
+						<div class="doctor-header">
+							<div class="doctor-name">Dr. Emily Clark</div>
+							<span class="pill dermatology">Dermatology</span>
+							<span class="stars">★★★★★</span>
+						</div>
+						<div class="doctor-meta">
+							<span>12 yrs experience</span>
+							<span>Sunshine Clinic</span>
+							<span class="availability"><span class="pill">Today 2 slots</span></span>
+						</div>
+					</div>
+					<div class="doctor-actions">
+						<a class="btn" href="book-appointment.html">Book</a>
+						<a class="btn btn-primary" href="book-appointment.html">Next available</a>
+					</div>
+				</div>
+
+				<div class="card doctor-card">
+					<div class="avatar"></div>
+					<div>
+						<div class="doctor-header">
+							<div class="doctor-name">Dr. Ahmed Khan</div>
+							<span class="pill orthopedics">Orthopedics</span>
+							<span class="stars">★★★☆☆</span>
+						</div>
+						<div class="doctor-meta">
+							<span>6 yrs experience</span>
+							<span>Metro Hospital</span>
+							<span class="availability"><span class="pill">Next week</span></span>
+						</div>
+					</div>
+					<div class="doctor-actions">
+						<a class="btn" href="book-appointment.html">Book</a>
+						<a class="btn btn-primary" href="book-appointment.html">Next available</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer">Tip: Use filters to find the right specialist.</div>
+		</main>
+	</div>
+</body>
+</html>
+
+

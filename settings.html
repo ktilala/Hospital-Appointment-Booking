@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Hospital Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-hospital-alt"></i>
+                <h2>Hospital Admin</h2>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="doctors.html">
+                        <i class="fas fa-user-md"></i>
+                        <span>Doctors</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="patients.html">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Patients</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="appointments.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="staff.html">
+                        <i class="fas fa-user-nurse"></i>
+                        <span>Staff/Nurses</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="billing.html">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Billing</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pharmacy.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Pharmacy</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="reports.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Settings</h1>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <div class="settings-container">
+                    <!-- Settings Navigation -->
+                    <div class="settings-nav">
+                        <div class="nav-item active" onclick="showSettingsSection('general')">
+                            <i class="fas fa-cog"></i>
+                            <span>General</span>
+                        </div>
+                        <div class="nav-item" onclick="showSettingsSection('hospital')">
+                            <i class="fas fa-hospital"></i>
+                            <span>Hospital Info</span>
+                        </div>
+                        <div class="nav-item" onclick="showSettingsSection('users')">
+                            <i class="fas fa-users"></i>
+                            <span>User Management</span>
+                        </div>
+                        <div class="nav-item" onclick="showSettingsSection('notifications')">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </div>
+                        <div class="nav-item" onclick="showSettingsSection('security')">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </div>
+                        <div class="nav-item" onclick="showSettingsSection('backup')">
+                            <i class="fas fa-database"></i>
+                            <span>Backup & Restore</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Content -->
+                    <div class="settings-content">
+                        <!-- General Settings -->
+                        <div id="general-settings" class="settings-section active">
+                            <div class="section-header">
+                                <h3>General Settings</h3>
+                                <p>Configure basic system settings</p>
+                            </div>
+                            
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="systemName">System Name</label>
+                                    <input type="text" id="systemName" value="Hospital Management System">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="timezone">Timezone</label>
+                                    <select id="timezone">
+                                        <option value="UTC">UTC</option>
+                                        <option value="EST">Eastern Time</option>
+                                        <option value="PST">Pacific Time</option>
+                                        <option value="CST">Central Time</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="language">Language</label>
+                                    <select id="language">
+                                        <option value="en">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="fr">French</option>
+                                        <option value="de">German</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateFormat">Date Format</label>
+                                    <select id="dateFormat">
+                                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="currency">Currency</label>
+                                    <select id="currency">
+                                        <option value="USD">USD ($)</option>
+                                        <option value="EUR">EUR (€)</option>
+                                        <option value="GBP">GBP (£)</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save General Settings
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Hospital Information -->
+                        <div id="hospital-settings" class="settings-section">
+                            <div class="section-header">
+                                <h3>Hospital Information</h3>
+                                <p>Configure hospital details and contact information</p>
+                            </div>
+                            
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="hospitalName">Hospital Name</label>
+                                    <input type="text" id="hospitalName" value="City General Hospital">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="hospitalAddress">Address</label>
+                                    <textarea id="hospitalAddress" rows="3">123 Medical Center Drive, City, State 12345</textarea>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="hospitalPhone">Phone</label>
+                                        <input type="tel" id="hospitalPhone" value="+1 (555) 123-4567">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hospitalEmail">Email</label>
+                                        <input type="email" id="hospitalEmail" value="info@hospital.com">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="hospitalWebsite">Website</label>
+                                    <input type="url" id="hospitalWebsite" value="https://www.hospital.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="licenseNumber">License Number</label>
+                                    <input type="text" id="licenseNumber" value="HOS-2024-001">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Hospital Information
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- User Management -->
+                        <div id="users-settings" class="settings-section">
+                            <div class="section-header">
+                                <h3>User Management</h3>
+                                <p>Manage user accounts and permissions</p>
+                            </div>
+                            
+                            <div class="user-management">
+                                <div class="management-actions">
+                                    <button class="btn btn-primary" onclick="openAddUserModal()">
+                                        <i class="fas fa-user-plus"></i>
+                                        Add User
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-download"></i>
+                                        Export Users
+                                    </button>
+                                </div>
+                                
+                                <div class="users-table">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th>Last Login</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="user-info">
+                                                        <img src="https://via.placeholder.com/40" alt="Admin">
+                                                        <div>
+                                                            <h4>Admin User</h4>
+                                                            <span>admin@hospital.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="role admin">Administrator</span></td>
+                                                <td><span class="status active">Active</span></td>
+                                                <td>2024-01-15 10:30 AM</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-icon" onclick="editUser(1)" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-icon" onclick="resetPassword(1)" title="Reset Password">
+                                                            <i class="fas fa-key"></i>
+                                                        </button>
+                                                        <button class="btn-icon danger" onclick="deleteUser(1)" title="Delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notifications -->
+                        <div id="notifications-settings" class="settings-section">
+                            <div class="section-header">
+                                <h3>Notification Settings</h3>
+                                <p>Configure notification preferences</p>
+                            </div>
+                            
+                            <form class="settings-form">
+                                <div class="notification-group">
+                                    <h4>Email Notifications</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h5>Appointment Reminders</h5>
+                                            <p>Send email reminders for upcoming appointments</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h5>Payment Notifications</h5>
+                                            <p>Notify when payments are received or overdue</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h5>System Alerts</h5>
+                                            <p>Receive alerts for system issues or maintenance</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="notification-group">
+                                    <h4>SMS Notifications</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h5>Emergency Alerts</h5>
+                                            <p>Send SMS for emergency situations</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Notification Settings
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Security -->
+                        <div id="security-settings" class="settings-section">
+                            <div class="section-header">
+                                <h3>Security Settings</h3>
+                                <p>Configure security and access control</p>
+                            </div>
+                            
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="sessionTimeout">Session Timeout (minutes)</label>
+                                    <input type="number" id="sessionTimeout" value="30" min="5" max="120">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="maxLoginAttempts">Maximum Login Attempts</label>
+                                    <input type="number" id="maxLoginAttempts" value="5" min="3" max="10">
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h5>Two-Factor Authentication</h5>
+                                        <p>Require 2FA for all user accounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h5>Password Complexity</h5>
+                                        <p>Enforce strong password requirements</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Security Settings
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Backup & Restore -->
+                        <div id="backup-settings" class="settings-section">
+                            <div class="section-header">
+                                <h3>Backup & Restore</h3>
+                                <p>Manage data backup and restoration</p>
+                            </div>
+                            
+                            <div class="backup-management">
+                                <div class="backup-actions">
+                                    <button class="btn btn-primary" onclick="createBackup()">
+                                        <i class="fas fa-download"></i>
+                                        Create Backup
+                                    </button>
+                                    <button class="btn btn-outline" onclick="scheduleBackup()">
+                                        <i class="fas fa-clock"></i>
+                                        Schedule Backup
+                                    </button>
+                                </div>
+                                
+                                <div class="backup-history">
+                                    <h4>Backup History</h4>
+                                    <div class="backup-list">
+                                        <div class="backup-item">
+                                            <div class="backup-info">
+                                                <h5>Full System Backup</h5>
+                                                <p>Created on January 15, 2024 at 2:00 AM</p>
+                                                <span class="backup-size">2.4 GB</span>
+                                            </div>
+                                            <div class="backup-actions">
+                                                <button class="btn-icon" onclick="restoreBackup('backup1')" title="Restore">
+                                                    <i class="fas fa-undo"></i>
+                                                </button>
+                                                <button class="btn-icon" onclick="downloadBackup('backup1')" title="Download">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="backup-item">
+                                            <div class="backup-info">
+                                                <h5>Database Backup</h5>
+                                                <p>Created on January 10, 2024 at 3:00 AM</p>
+                                                <span class="backup-size">1.8 GB</span>
+                                            </div>
+                                            <div class="backup-actions">
+                                                <button class="btn-icon" onclick="restoreBackup('backup2')" title="Restore">
+                                                    <i class="fas fa-undo"></i>
+                                                </button>
+                                                <button class="btn-icon" onclick="downloadBackup('backup2')" title="Download">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function showSettingsSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.settings-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(section + '-settings').classList.add('active');
+            
+            // Add active class to clicked nav item
+            event.target.closest('.nav-item').classList.add('active');
+        }
+        
+        function openAddUserModal() {
+            alert('Add User Modal would open here');
+        }
+        
+        function editUser(id) {
+            alert('Edit User: ' + id);
+        }
+        
+        function resetPassword(id) {
+            alert('Reset Password for User: ' + id);
+        }
+        
+        function deleteUser(id) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                alert('User deleted: ' + id);
+            }
+        }
+        
+        function createBackup() {
+            alert('Creating system backup...');
+        }
+        
+        function scheduleBackup() {
+            alert('Schedule backup settings would open here');
+        }
+        
+        function restoreBackup(backupId) {
+            if (confirm('Are you sure you want to restore from this backup?')) {
+                alert('Restoring from backup: ' + backupId);
+            }
+        }
+        
+        function downloadBackup(backupId) {
+            alert('Downloading backup: ' + backupId);
+        }
+        
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+        
+        // Form submissions
+        document.querySelectorAll('.settings-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Settings saved successfully!');
+            });
+        });
+    </script>
+</body>
+</html>

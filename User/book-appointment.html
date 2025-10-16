@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Hospital Panel · Book Appointment</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<div class="app">
+		<aside class="sidebar">
+			<div class="brand"><div class="logo"></div> Hospital Panel</div>
+			<nav class="nav">
+				<a href="index.html"><span class="i">🏠</span> Dashboard</a>
+				<a class="active" href="book-appointment.html"><span class="i">🗓️</span> Book Appointment</a>
+				<a href="my-appointments.html"><span class="i">📋</span> My Appointments</a>
+				<a href="doctors.html"><span class="i">👩‍⚕️</span> Doctors</a>
+				<a href="billing.html"><span class="i">💳</span> Billing</a>
+				<div class="sep"></div>
+				<a href="profile.html"><span class="i">👤</span> Profile</a>
+			</nav>
+		</aside>
+		<main class="content">
+			<div class="topbar">
+				<h2 class="page-title">Book an Appointment</h2>
+				<div class="user-mini">
+					<div class="muted">User</div>
+					<a class="btn" href="logout.html">Logout</a>
+				</div>
+			</div>
+
+			<form class="form" action="my-appointments.html" method="get">
+				<div class="row two">
+					<div class="field">
+						<label for="department">Department</label>
+						<select id="department" name="department" required>
+							<option value="">Select department</option>
+							<option>Cardiology</option>
+							<option>Dermatology</option>
+							<option>Pediatrics</option>
+							<option>Orthopedics</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="doctor">Doctor</label>
+						<select id="doctor" name="doctor" required>
+							<option value="">Choose doctor</option>
+							<option>Dr. Jane Doe</option>
+							<option>Dr. John Smith</option>
+							<option>Dr. Emily Clark</option>
+						</select>
+					</div>
+				</div>
+				<div class="row two">
+					<div class="field">
+						<label for="date">Date</label>
+						<input id="date" name="date" type="date" required />
+					</div>
+					<div class="field">
+						<label for="time">Time</label>
+						<input id="time" name="time" type="time" required />
+					</div>
+				</div>
+				<div class="field">
+					<label for="reason">Reason</label>
+					<textarea id="reason" name="reason" placeholder="Describe your symptoms or reason for visit"></textarea>
+				</div>
+				<div class="actions">
+					<button class="btn btn-primary" type="submit">Book Appointment</button>
+					<a class="btn" href="doctors.html">Find Doctors</a>
+				</div>
+			</form>
+
+			<div class="footer">Need help? Email support@hospital.example</div>
+		</main>
+	</div>
+</body>
+</html>
+
+
